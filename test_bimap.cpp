@@ -105,9 +105,9 @@ static void bi2TraverseRev(BIMap::TSequence2& seq)
     bi2Traverse(seq.rbegin(), seq.rend());
 }
 
-void testBiMap()
+void testBiMap1()
 {
-    std::cout << "Start Test BiMap" << std::endl;
+    std::cout << "Start Test BiMap1" << std::endl;
 
     BIMap::TSequence1 seq1 = bm.sequence1();
     bi1TraverseFwd(seq1);
@@ -128,4 +128,60 @@ void testBiMap()
     bi2FindIt(4);
 
     std::cout << "Stop Test" << std::endl;
+}
+
+//in header:
+namespace enum_to_str
+{
+    typedef enum {
+        RED = -3,
+        GREEN = 1,
+        BLUE = 14
+    } Color;
+
+    static const char * toString(Color c);
+    static Color fromString(const char * c);
+}
+
+//in source:
+namespace enum_to_str
+{
+    struct StrCmp
+    {
+        bool operator() (const char * s1, const char * s2) const
+        {
+            return (strcmp(s1, s2) < 0);
+        }
+    };
+
+    typedef BiMap<Color, const char *, std::less<int>, StrCmp> EnumMap;
+    typedef EnumMap::Item Entry;
+
+    static EnumMap::Builder b;
+    static Entry e1(b, Color::RED, "RED");
+    static Entry e2(b, Color::BLUE, "bleu");
+    static Entry e3(b, Color::GREEN, "Green");
+
+    static EnumMap em(b);
+
+    static const char * toString(Color c)
+    {
+        const Entry * e = em.findKey1(c);
+        return e->key2();
+    }
+    static Color fromString(const char * c)
+    {
+        const Entry * e = em.findKey2(c);
+        return e->key1();
+    }
+}
+
+void testBiMap2()
+{
+    using namespace enum_to_str;
+    Color c1 = Color::RED;
+    std::cout << toString(c1) << " should be RED" << std::endl;
+    
+    Color c2 = fromString("RED");
+    std::cout << "are equal:" << (c1 == c2) << std::endl;
 }
