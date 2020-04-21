@@ -11,6 +11,7 @@
 #include <iostream>
 
 #include "bimap.hpp"
+#include "enummap.hpp"
 
 typedef BiMap<int, int, std::less<int>, std::less<int> > BIMap;
 typedef BIMap::Item BI;
@@ -131,7 +132,7 @@ void testBiMap1()
 }
 
 //in header:
-namespace enum_to_str
+namespace color
 {
     typedef enum {
         RED = -3,
@@ -139,49 +140,81 @@ namespace enum_to_str
         BLUE = 14
     } Color;
 
-    static const char * toString(Color c);
-    static Color fromString(const char * c);
+    static const char * colorToString(Color c);
+    static Color stringToColor(const char * c);
 }
 
 //in source:
-namespace enum_to_str
+namespace color
 {
-    struct StrCmp
+    static Enum<Color>::Builder b;
+    static Enum<Color>::Item e1(b, Color::RED, "RED");
+    static Enum<Color>::Item e2(b, Color::BLUE, "bleu");
+    static Enum<Color>::Item e3(b, Color::GREEN, "Green");
+
+    static Enum<Color>::Map em(b);
+
+    static const char * colorToString(Color c)
     {
-        bool operator() (const char * s1, const char * s2) const
-        {
-            return (strcmp(s1, s2) < 0);
-        }
-    };
-
-    typedef BiMap<Color, const char *, std::less<int>, StrCmp> EnumMap;
-    typedef EnumMap::Item Entry;
-
-    static EnumMap::Builder b;
-    static Entry e1(b, Color::RED, "RED");
-    static Entry e2(b, Color::BLUE, "bleu");
-    static Entry e3(b, Color::GREEN, "Green");
-
-    static EnumMap em(b);
-
-    static const char * toString(Color c)
-    {
-        const Entry * e = em.findKey1(c);
-        return e->key2();
+        auto p = Enum<Color>::enumToString(em, c);
+        return p.second;
     }
-    static Color fromString(const char * c)
+    static Color stringToColor(const char * c)
     {
-        const Entry * e = em.findKey2(c);
-        return e->key1();
+        auto p = Enum<Color>::stringToEnum(em, c);
+        return p.second;
+    }
+}
+
+//in header:
+namespace shape
+{
+    typedef enum {
+        CIRCLE = 1,
+        SQUARE = 2
+    } Shape;
+
+    static const char * shapeToString(Shape c);
+    static Shape stringToShape(const char * c);
+}
+
+//in source:
+namespace shape
+{
+    static Enum<Shape>::Builder b;
+    static Enum<Shape>::Item e1(b, Shape::SQUARE, "square");
+    static Enum<Shape>::Item e2(b, Shape::CIRCLE, "circle");
+
+    static Enum<Shape>::Map em(b);
+
+    static const char * shapeToString(Shape c)
+    {
+        auto p = Enum<Shape>::enumToString(em, c);
+        return p.second;
+    }
+    static Shape stringToShape(const char * c)
+    {
+        auto p = Enum<Shape>::stringToEnum(em, c);
+        return p.second;
     }
 }
 
 void testBiMap2()
 {
-    using namespace enum_to_str;
-    Color c1 = Color::RED;
-    std::cout << toString(c1) << " should be RED" << std::endl;
-    
-    Color c2 = fromString("RED");
-    std::cout << "are equal:" << (c1 == c2) << std::endl;
+    {
+        using namespace color;
+        Color c1 = Color::RED;
+        std::cout << colorToString(c1) << " should be RED" << std::endl;
+        
+        Color c2 = stringToColor("RED");
+        std::cout << "are equal:" << (c1 == c2) << std::endl;
+    }
+    {
+        using namespace shape;
+        Shape c1 = Shape::CIRCLE;
+        std::cout << shapeToString(c1) << " should be CIRCLE" << std::endl;
+        
+        Shape c2 = stringToShape("circle");
+        std::cout << "are equal:" << (c1 == c2) << std::endl;
+    }
 }
