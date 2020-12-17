@@ -9,6 +9,7 @@
 #ifndef test_bimap_hpp
 #define test_bimap_hpp
 
-void testBiMap();
+void testBiMap1();
+void testBiMap2();
 
 #endif /* test_bimap_hpp */
