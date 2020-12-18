@@ -11,6 +11,8 @@
 
 #include <cassert>
 
+namespace static_map {
+
 struct ArrayItem;
 struct TreeItem;
 class StructItem;
@@ -383,5 +385,7 @@ public:
         return item;
     }
 };
+
+}
 
 #endif /* itemtree_hpp */

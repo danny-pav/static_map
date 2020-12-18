@@ -7,3 +7,6 @@
 //
 
 #include "bimap.hpp"
+
+namespace static_map {
+}

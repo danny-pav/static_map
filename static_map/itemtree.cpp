@@ -11,6 +11,7 @@
 #include <cassert>
 #include <utility>
 
+namespace static_map {
 StructItem::StructItem(ItemArray& array, const void * data)
 : m_item(),
 m_data(data)
@@ -302,4 +303,6 @@ const StructItem * ItemTree::getPrev(const StructItem * item) const
             prev = parent;
     }
     return prev;
+}
+
 }

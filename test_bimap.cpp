@@ -13,7 +13,7 @@
 #include "bimap.hpp"
 #include "enummap.hpp"
 
-typedef BiMap<int, int, std::less<int>, std::less<int> > BIMap;
+typedef static_map::BiMap<int, int, std::less<int>, std::less<int> > BIMap;
 typedef BIMap::Item BI;
 
 static BIMap::TBuilder bb;
@@ -147,6 +147,8 @@ namespace color
 //in source:
 namespace color
 {
+using static_map::Enum;
+
     static Enum<Color>::Builder b;
     static Enum<Color>::Item e1(b, Color::RED, "RED");
     static Enum<Color>::Item e2(b, Color::BLUE, "bleu");
@@ -181,6 +183,8 @@ namespace shape
 //in source:
 namespace shape
 {
+using static_map::Enum;
+
     static Enum<Shape>::Builder b;
     static Enum<Shape>::Item e1(b, Shape::SQUARE, "square");
     static Enum<Shape>::Item e2(b, Shape::CIRCLE, "circle");
