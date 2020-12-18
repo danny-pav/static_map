@@ -18,6 +18,8 @@
 //
 //
 
+namespace static_map {
+
 class IterImpl
 {
 public:
@@ -229,5 +231,6 @@ public:
 private:
     const ItemTree * m_tree;
 };
+}
 
 #endif /* sequence_hpp */

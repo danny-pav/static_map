@@ -7,3 +7,6 @@
 //
 
 #include "builderbase.hpp"
+
+namespace static_map {
+}

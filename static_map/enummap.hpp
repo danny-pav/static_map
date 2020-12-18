@@ -11,6 +11,8 @@
 
 #include "bimap.hpp"
 
+namespace static_map {
+
 template<typename TEnum>
 struct Enum
 {
@@ -41,5 +43,7 @@ struct Enum
         return std::make_pair(first, second);
     }
 };
+
+}
 
 #endif /* enummap_hpp */

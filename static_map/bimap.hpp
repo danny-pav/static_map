@@ -15,6 +15,8 @@
 
 #include <functional>
 
+namespace static_map {
+
 //
 //
 //
@@ -163,5 +165,7 @@ private:
     ItemTree m_tree1;
     ItemTree m_tree2;
 };
+
+}
 
 #endif /* bimap_hpp */

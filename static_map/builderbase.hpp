@@ -11,6 +11,7 @@
 
 #include "itemtree.hpp"
 
+namespace static_map {
 class BuilderBase
 {
 public:
@@ -53,5 +54,7 @@ private:
     ItemArray m_array1;
     ItemArray m_array2;
 };
+
+}
 
 #endif /* builderbase_hpp */

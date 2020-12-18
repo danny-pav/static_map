@@ -7,3 +7,6 @@
 //
 
 #include "enummap.hpp"
+
+namespace static_map {
+}
