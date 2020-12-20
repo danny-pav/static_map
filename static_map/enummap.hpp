@@ -26,6 +26,8 @@ struct Enum
 
     typedef BiMap<TEnum, const char *, std::less<int>, StrCmp> Map;
     typedef typename Map::Item Item;
+    typedef typename Map::LeftKeyItem LeftKeyItem;
+    typedef typename Map::RightKeyItem RightKeyItem;
     typedef typename Map::Builder Builder;
 
     static std::pair<bool, const char *> enumToString(const Enum::Map& em, TEnum c)

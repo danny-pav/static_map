@@ -11,5 +11,6 @@
 
 void testBiMap1();
 void testBiMap2();
+void testBiMap3();
 
 #endif /* test_bimap_hpp */

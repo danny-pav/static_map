@@ -39,27 +39,29 @@ static void bi1FindIt(int i)
 template<typename TIterParam>
 static void bi1Traverse(TIterParam itBegin, TIterParam itEnd)
 {
-    std::cout << "->" << std::endl;
+    std::cout << ">>" << std::endl;
     for (TIterParam it = itBegin; it != itEnd; ++it)
     {
-        std::cout << "k1=" << it->key1() << ", k2=" << it->key2() << std::endl;
+        std::cout << "k1=" << it->key1() << " -> k2=" << it->key2() << std::endl;
     }
-    std::cout << "<-" << std::endl;
+    std::cout << "<<" << std::endl;
     for (TIterParam it = itEnd; it != itBegin; --it)
     {
         TIterParam itPrev(it);
         --itPrev;
-        std::cout << "k1=" << itPrev->key1() << ", k2=" << itPrev->key2() << std::endl;
+        std::cout << "k1=" << itPrev->key1() << " -> k2=" << itPrev->key2() << std::endl;
     }
 }
 
-static void bi1TraverseFwd(BIMap::TSequence1& seq)
+template<typename TSequence1>
+static void bi1TraverseFwd(TSequence1& seq)
 {
     std::cout << "FWD1";
     bi1Traverse(seq.begin(), seq.end());
 }
 
-static void bi1TraverseRev(BIMap::TSequence1& seq)
+template<typename TSequence1>
+static void bi1TraverseRev(TSequence1& seq)
 {
     std::cout << "REV1";
     bi1Traverse(seq.rbegin(), seq.rend());
@@ -80,27 +82,29 @@ static void bi2FindIt(int i)
 template<typename TIterParam>
 static void bi2Traverse(TIterParam itBegin, TIterParam itEnd)
 {
-    std::cout << "->" << std::endl;
+    std::cout << ">>" << std::endl;
     for (TIterParam it = itBegin; it != itEnd; ++it)
     {
-        std::cout << "k1=" << it->key1() << ",k2=" << it->key2() << std::endl;
+        std::cout << "k1=" << it->key1() << " <- k2=" << it->key2() << std::endl;
     }
-    std::cout << "<-" << std::endl;
+    std::cout << "<<" << std::endl;
     for (TIterParam it = itEnd; it != itBegin; --it)
     {
         TIterParam itPrev(it);
         --itPrev;
-        std::cout << "k1=" << itPrev->key1() << ",k2=" << itPrev->key2() << std::endl;
+        std::cout << "k1=" << itPrev->key1() << " <- k2=" << itPrev->key2() << std::endl;
     }
 }
 
-static void bi2TraverseFwd(BIMap::TSequence2& seq)
+template<typename TSequence2>
+static void bi2TraverseFwd(TSequence2& seq)
 {
     std::cout << "FWD2";
     bi2Traverse(seq.begin(), seq.end());
 }
 
-static void bi2TraverseRev(BIMap::TSequence2& seq)
+template<typename TSequence2>
+static void bi2TraverseRev(TSequence2& seq)
 {
     std::cout << "REV2";
     bi2Traverse(seq.rbegin(), seq.rend());
@@ -221,4 +225,64 @@ void testBiMap2()
         Shape c2 = stringToShape("circle");
         std::cout << "are equal:" << (c1 == c2) << std::endl;
     }
+}
+
+// in header:
+namespace currency
+{
+typedef enum
+{
+    CAD = 1,
+    USD = 2
+} Currency;
+
+static const char* currencyToString(Currency c);
+static Currency stringToCurrency(const char* c);
+} // namespace currency
+
+// in source:
+namespace currency
+{
+using static_map::Enum;
+
+static Enum<Currency>::Builder b;
+static Enum<Currency>::Item e1(b, Currency::USD, "USD");
+static Enum<Currency>::RightKeyItem e1a(b, Currency::USD, "usd");
+static Enum<Currency>::Item e2(b, Currency::CAD, "CAD");
+static Enum<Currency>::RightKeyItem e2a(b, Currency::CAD, "cad");
+
+typedef Enum<Currency>::Map CurrencyMap;
+static CurrencyMap em(b);
+
+static const char* currencyToString(Currency c)
+{
+    auto p = Enum<Currency>::enumToString(em, c);
+    return p.second;
+}
+static Currency stringToCurrency(const char* c)
+{
+    auto p = Enum<Currency>::stringToEnum(em, c);
+    return p.second;
+}
+} // namespace currency
+
+void testBiMap3()
+{
+    {
+        using namespace currency;
+        Currency c1 = Currency::USD;
+        std::cout << currencyToString(c1) << " should be USD" << std::endl;
+
+        Currency c2 = stringToCurrency("USD");
+        std::cout << "are equal:" << (c1 == c2) << std::endl;
+        Currency c3 = stringToCurrency("usd");
+        std::cout << "are equal:" << (c1 == c3) << std::endl;
+    }
+    currency::CurrencyMap::TSequence1 seq1 = currency::em.sequence1();
+    bi1TraverseFwd(seq1);
+    bi1TraverseRev(seq1);
+
+    currency::CurrencyMap::TSequence2 seq2 = currency::em.sequence2();
+    bi2TraverseFwd(seq2);
+    bi2TraverseRev(seq2);
 }
