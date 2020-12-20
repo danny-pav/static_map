@@ -8,5 +8,6 @@
 
 #include "bimap.hpp"
 
-namespace static_map {
+namespace static_map
+{
 }

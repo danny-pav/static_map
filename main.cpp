@@ -11,5 +11,6 @@
 int main(int argc, const char * argv[]) {
     testBiMap1();
     testBiMap2();
+    testBiMap3();
     return 0;
 }

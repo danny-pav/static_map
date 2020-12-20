@@ -59,43 +59,123 @@ public:
         Builder() : Base() { }
         ~Builder() = default;
     };
-    
-public:
-    class Item
+
+private:
+    class ItemBase
     {
     public:
-        typedef Item ThisType;
+        typedef ItemBase ThisType;
         typedef Builder TBuilder;
-        
+
     public:
-        template<typename TKey1Param, typename TKey2Param>
-        Item(TBuilder& builder, TKey1Param kp1, TKey2Param kp2)
-        : m_item1(builder.getUnsortedArray1(), *this),
-        m_item2(builder.getUnsortedArray2(), *this),
-        m_key1(kp1),
-        m_key2(kp2)
+        template <typename TKey1Param, typename TKey2Param>
+        ItemBase(TBuilder& builder, TKey1Param kp1, TKey2Param kp2) : m_key1(kp1), m_key2(kp2)
         {
         }
-        ~Item() = default;
-        
+        ~ItemBase() = default;
+
     private:
-        Item(const Item&) = delete;
-        Item& operator=(const Item&) = delete;
-        
+        ItemBase(const ItemBase&) = delete;
+        ItemBase& operator=(const ItemBase&) = delete;
+
     public:
-        const TKey1& key1() const { return m_key1; }
-        const TKey2& key2() const { return m_key2; }
-        
+        const TKey1& key1() const
+        {
+            return m_key1;
+        }
+        const TKey2& key2() const
+        {
+            return m_key2;
+        }
+
     private:
-        typedef StructItemT<ThisType> TStructItem;
-        
-    private:
-        TStructItem m_item1;
-        TStructItem m_item2;
         TKey1 m_key1;
         TKey2 m_key2;
     };
-    
+
+public:
+    class Item : private ItemBase
+    {
+    public:
+        typedef Item ThisType;
+        typedef ItemBase BaseType;
+        typedef Builder TBuilder;
+
+    public:
+        template <typename TKey1Param, typename TKey2Param>
+        Item(TBuilder& builder, TKey1Param kp1, TKey2Param kp2) :
+            ItemBase(builder, kp1, kp2),
+            m_item1(builder.getUnsortedArray1(), *this),
+            m_item2(builder.getUnsortedArray2(), *this)
+        {
+        }
+
+    public:
+        using BaseType::key1;
+        using BaseType::key2;
+
+    private:
+        typedef StructItemT<ThisType> TStructItem;
+
+    private:
+        TStructItem m_item1;
+        TStructItem m_item2;
+    };
+
+public:
+    class LeftKeyItem : private ItemBase
+    {
+    public:
+        typedef LeftKeyItem ThisType;
+        typedef ItemBase BaseType;
+        typedef Builder TBuilder;
+
+    public:
+        template <typename TKey1Param, typename TKey2Param>
+        LeftKeyItem(TBuilder& builder, TKey1Param kp1, TKey2Param kp2) :
+            ItemBase(builder, kp1, kp2),
+            m_item(builder.getUnsortedArray1(), *this)
+        {
+        }
+
+    public:
+        using BaseType::key1;
+        using BaseType::key2;
+
+    private:
+        typedef StructItemT<ThisType> TStructItem;
+
+    private:
+        TStructItem m_item;
+    };
+
+public:
+    class RightKeyItem : private ItemBase
+    {
+    public:
+        typedef RightKeyItem ThisType;
+        typedef ItemBase BaseType;
+        typedef Builder TBuilder;
+
+    public:
+        template <typename TKey1Param, typename TKey2Param>
+        RightKeyItem(TBuilder& builder, TKey1Param kp1, TKey2Param kp2) :
+            ItemBase(builder, kp1, kp2),
+            m_item(builder.getUnsortedArray2(), *this)
+        {
+        }
+
+    public:
+        using BaseType::key1;
+        using BaseType::key2;
+
+    private:
+        typedef StructItemT<ThisType> TStructItem;
+
+    private:
+        TStructItem m_item;
+    };
+
 private:
     class GetKey1
     {
