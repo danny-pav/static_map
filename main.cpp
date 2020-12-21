@@ -7,8 +7,11 @@
 //
 
 #include "test_bimap.hpp"
+#include "test_unimap.hpp"
 
-int main(int argc, const char * argv[]) {
+int main(int argc, const char* argv[])
+{
+    testUniMap();
     testBiMap1();
     testBiMap2();
     testBiMap3();

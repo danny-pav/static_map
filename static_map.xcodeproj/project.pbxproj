@@ -14,6 +14,8 @@
 		B33D72E2258BDA9D0046446F /* bimap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B33D72D9258BDA9A0046446F /* bimap.cpp */; };
 		B33D72E3258BDA9D0046446F /* sequence.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B33D72DB258BDA9B0046446F /* sequence.cpp */; };
 		B3BC113F24574EF500E8340E /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3BC113E24574EF500E8340E /* main.cpp */; };
+		B3DA2959259065A1009D7192 /* test_unimap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3DA2958259065A1009D7192 /* test_unimap.cpp */; };
+		B3DA295D259065B6009D7192 /* unimap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3DA295B259065B6009D7192 /* unimap.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -45,6 +47,10 @@
 		B379CF3B2582C89C0069A3DB /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		B3BC113B24574EF500E8340E /* static_map */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = static_map; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3BC113E24574EF500E8340E /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		B3DA2957259065A1009D7192 /* test_unimap.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = test_unimap.hpp; sourceTree = "<group>"; };
+		B3DA2958259065A1009D7192 /* test_unimap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = test_unimap.cpp; sourceTree = "<group>"; };
+		B3DA295B259065B6009D7192 /* unimap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = unimap.cpp; sourceTree = "<group>"; };
+		B3DA295C259065B6009D7192 /* unimap.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = unimap.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +67,8 @@
 		B33D72D4258BDA000046446F /* static_map */ = {
 			isa = PBXGroup;
 			children = (
+				B3DA295B259065B6009D7192 /* unimap.cpp */,
+				B3DA295C259065B6009D7192 /* unimap.hpp */,
 				B33D72D9258BDA9A0046446F /* bimap.cpp */,
 				B33D72DA258BDA9B0046446F /* bimap.hpp */,
 				B33D72D6258BDA9A0046446F /* builderbase.cpp */,
@@ -84,6 +92,8 @@
 				B3BC113E24574EF500E8340E /* main.cpp */,
 				B33D72CF258BD9910046446F /* test_bimap.cpp */,
 				B33D72CE258BD9910046446F /* test_bimap.hpp */,
+				B3DA2958259065A1009D7192 /* test_unimap.cpp */,
+				B3DA2957259065A1009D7192 /* test_unimap.hpp */,
 				B3BC113C24574EF500E8340E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -153,7 +163,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B3DA295D259065B6009D7192 /* unimap.cpp in Sources */,
 				B3BC113F24574EF500E8340E /* main.cpp in Sources */,
+				B3DA2959259065A1009D7192 /* test_unimap.cpp in Sources */,
 				B33D72DF258BDA9D0046446F /* builderbase.cpp in Sources */,
 				B33D72D1258BD9920046446F /* test_bimap.cpp in Sources */,
 				B33D72E1258BDA9D0046446F /* itemtree.cpp in Sources */,
