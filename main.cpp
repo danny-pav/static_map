@@ -8,10 +8,12 @@
 
 #include "test_bimap.hpp"
 #include "test_unimap.hpp"
+#include "test_refmap.hpp"
 
 int main(int argc, const char* argv[])
 {
     testUniMap();
+    testRefMap();
     testBiMap1();
     testBiMap2();
     testBiMap3();

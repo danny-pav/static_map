@@ -16,6 +16,8 @@
 		B3BC113F24574EF500E8340E /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3BC113E24574EF500E8340E /* main.cpp */; };
 		B3DA2959259065A1009D7192 /* test_unimap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3DA2958259065A1009D7192 /* test_unimap.cpp */; };
 		B3DA295D259065B6009D7192 /* unimap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3DA295B259065B6009D7192 /* unimap.cpp */; };
+		B3F17AB22590D6B7008EB313 /* refmap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3F17AB12590D6B7008EB313 /* refmap.cpp */; };
+		B3F17AB62590D6CF008EB313 /* test_refmap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3F17AB52590D6CF008EB313 /* test_refmap.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -51,6 +53,10 @@
 		B3DA2958259065A1009D7192 /* test_unimap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = test_unimap.cpp; sourceTree = "<group>"; };
 		B3DA295B259065B6009D7192 /* unimap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = unimap.cpp; sourceTree = "<group>"; };
 		B3DA295C259065B6009D7192 /* unimap.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = unimap.hpp; sourceTree = "<group>"; };
+		B3F17AB02590D6B6008EB313 /* refmap.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = refmap.hpp; sourceTree = "<group>"; };
+		B3F17AB12590D6B7008EB313 /* refmap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = refmap.cpp; sourceTree = "<group>"; };
+		B3F17AB42590D6CF008EB313 /* test_refmap.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = test_refmap.hpp; sourceTree = "<group>"; };
+		B3F17AB52590D6CF008EB313 /* test_refmap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = test_refmap.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +73,8 @@
 		B33D72D4258BDA000046446F /* static_map */ = {
 			isa = PBXGroup;
 			children = (
+				B3F17AB12590D6B7008EB313 /* refmap.cpp */,
+				B3F17AB02590D6B6008EB313 /* refmap.hpp */,
 				B3DA295B259065B6009D7192 /* unimap.cpp */,
 				B3DA295C259065B6009D7192 /* unimap.hpp */,
 				B33D72D9258BDA9A0046446F /* bimap.cpp */,
@@ -86,6 +94,8 @@
 		B3BC113224574EF400E8340E = {
 			isa = PBXGroup;
 			children = (
+				B3F17AB52590D6CF008EB313 /* test_refmap.cpp */,
+				B3F17AB42590D6CF008EB313 /* test_refmap.hpp */,
 				B33D72D4258BDA000046446F /* static_map */,
 				B379CF3B2582C89C0069A3DB /* LICENSE */,
 				B379CF3A2582B11E0069A3DB /* README.md */,
@@ -163,6 +173,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B3F17AB22590D6B7008EB313 /* refmap.cpp in Sources */,
+				B3F17AB62590D6CF008EB313 /* test_refmap.cpp in Sources */,
 				B3DA295D259065B6009D7192 /* unimap.cpp in Sources */,
 				B3BC113F24574EF500E8340E /* main.cpp in Sources */,
 				B3DA2959259065A1009D7192 /* test_unimap.cpp in Sources */,
