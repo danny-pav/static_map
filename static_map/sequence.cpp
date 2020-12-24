@@ -10,7 +10,8 @@
 
 #include <cassert>
 
-namespace static_map {
+namespace static_map
+{
 bool IterImpl::match(const IterImpl& rhs) const
 {
     return (m_tree == rhs.m_tree) && (m_item == rhs.m_item);
@@ -52,9 +53,9 @@ void IterImpl::makeNull(const ItemTree& tree)
     m_item = nullptr;
 }
 
-void IterImpl::makeIter(const ItemTree& tree, const StructItem * item)
+void IterImpl::makeIter(const ItemTree& tree, const StructItem* item)
 {
     m_tree = &tree;
     m_item = item;
 }
-}
+} // namespace static_map

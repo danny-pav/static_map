@@ -8,5 +8,6 @@
 
 #include "enummap.hpp"
 
-namespace static_map {
+namespace static_map
+{
 }
