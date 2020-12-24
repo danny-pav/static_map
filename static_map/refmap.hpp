@@ -17,21 +17,18 @@
 
 namespace static_map
 {
-template <typename TData, typename TKey>
+template<typename TData, typename TKey>
 class RefGetKey
 {
 public:
-    static const TKey& key(const TData& data)
-    {
-        return data.key();
-    }
+    static const TKey& key(const TData& data) { return data.key(); }
 };
 
 //
 //
 //
 
-template <typename TData, typename TKey, typename TKeyGet = RefGetKey<TData, TKey>, typename TKeySort = std::less<TKey>>
+template<typename TData, typename TKey, typename TKeyGet = RefGetKey<TData, TKey>, typename TKeySort = std::less<TKey>>
 class RefMap
 {
 public:
@@ -52,9 +49,7 @@ public:
         typedef BuilderBase Base;
 
     public:
-        Builder() : Base()
-        {
-        }
+        Builder() : Base() {}
         ~Builder() = default;
     };
 
@@ -69,9 +64,7 @@ public:
         typedef StructItemT<TData> TStructItem;
 
     public:
-        Item(TBuilder& builder, const TData& data) : m_item(builder.getUnsortedArray(), data), m_data(data)
-        {
-        }
+        Item(TBuilder& builder, const TData& data) : m_item(builder.getUnsortedArray(), data), m_data(data) {}
         ~Item() = default;
 
     private:

@@ -87,7 +87,7 @@ namespace static_map
 // function will return nullptr to indicate failure
 //
 
-template <typename TKey, typename TVal, typename TKeySort = std::less<TKey>>
+template<typename TKey, typename TVal, typename TKeySort = std::less<TKey>>
 class UniMap
 {
 public:
@@ -143,7 +143,7 @@ public:
         typedef Builder TBuilder;
 
     public:
-        template <typename TKeyParam, typename TValParam>
+        template<typename TKeyParam, typename TValParam>
         Item(TBuilder& builder, TKeyParam kp, TValParam vp) :
             m_item(builder.getUnsortedArray(), *this),
             m_key(kp),
@@ -157,14 +157,8 @@ public:
         Item& operator=(const Item&) = delete;
 
     public:
-        const TKey& key() const
-        {
-            return m_key;
-        }
-        const TVal& val() const
-        {
-            return m_val;
-        }
+        const TKey& key() const { return m_key; }
+        const TVal& val() const { return m_val; }
 
     private:
         TStructItem m_item;
@@ -176,10 +170,7 @@ private:
     class GetKey
     {
     public:
-        static const TKey& key(const TData& item)
-        {
-            return item.key();
-        }
+        static const TKey& key(const TData& item) { return item.key(); }
     };
 
 public:

@@ -14,9 +14,7 @@
 
 struct Foo
 {
-    Foo(int i, double x, double y) : m_i(i), m_x(x), m_y(y)
-    {
-    }
+    Foo(int i, double x, double y) : m_i(i), m_x(x), m_y(y) {}
     int m_i;
     double m_x;
     double m_y;
@@ -24,10 +22,7 @@ struct Foo
 
 struct GetFooKey
 {
-    static const int& key(const Foo& foo)
-    {
-        return foo.m_i;
-    }
+    static const int& key(const Foo& foo) { return foo.m_i; }
 };
 
 typedef Foo FData;
@@ -64,7 +59,7 @@ static void fmFindIt(int i)
     std::cout << std::endl;
 }
 
-template <typename TIterParam>
+template<typename TIterParam>
 static void fmTraverse(TIterParam itBegin, TIterParam itEnd)
 {
     std::cout << "->" << std::endl;

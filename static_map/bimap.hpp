@@ -9,24 +9,20 @@
 #ifndef bimap_hpp
 #define bimap_hpp
 
-#include "itemtree.hpp"
 #include "builderbase.hpp"
+#include "itemtree.hpp"
 #include "sequence.hpp"
 
 #include <functional>
 
-namespace static_map {
+namespace static_map
+{
 
 //
 //
 //
 
-template<
-typename TKey1,
-typename TKey2,
-typename TKey1Sort = std::less<TKey1>,
-typename TKey2Sort = std::less<TKey2>
->
+template<typename TKey1, typename TKey2, typename TKey1Sort = std::less<TKey1>, typename TKey2Sort = std::less<TKey2>>
 class BiMap
 {
 public:
@@ -35,7 +31,7 @@ public:
     typedef BiMap<TKey1, TKey2, TKey1Sort, TKey2Sort> ThisType;
     typedef Builder TBuilder;
     typedef Item TData;
-    
+
 private:
     class GetKey1;
     class GetKey2;
@@ -44,19 +40,19 @@ private:
     typedef GetKey2 TKey2Get;
     typedef TreeFuncs<TData, TKey1, TKey1Get, TKey1Sort> Tree1Util;
     typedef TreeFuncs<TData, TKey2, TKey2Get, TKey2Sort> Tree2Util;
-    
+
 public:
     typedef Sequence<TData, TKey1, TKey1Get, TKey1Sort> TSequence1;
     typedef Sequence<TData, TKey2, TKey2Get, TKey2Sort> TSequence2;
-    
+
 public:
     class Builder : public BiBuilderBase
     {
     private:
         typedef BiBuilderBase Base;
-        
+
     public:
-        Builder() : Base() { }
+        Builder() : Base() {}
         ~Builder() = default;
     };
 
@@ -68,7 +64,7 @@ private:
         typedef Builder TBuilder;
 
     public:
-        template <typename TKey1Param, typename TKey2Param>
+        template<typename TKey1Param, typename TKey2Param>
         ItemBase(TBuilder& builder, TKey1Param kp1, TKey2Param kp2) : m_key1(kp1), m_key2(kp2)
         {
         }
@@ -79,14 +75,8 @@ private:
         ItemBase& operator=(const ItemBase&) = delete;
 
     public:
-        const TKey1& key1() const
-        {
-            return m_key1;
-        }
-        const TKey2& key2() const
-        {
-            return m_key2;
-        }
+        const TKey1& key1() const { return m_key1; }
+        const TKey2& key2() const { return m_key2; }
 
     private:
         TKey1 m_key1;
@@ -102,7 +92,7 @@ public:
         typedef Builder TBuilder;
 
     public:
-        template <typename TKey1Param, typename TKey2Param>
+        template<typename TKey1Param, typename TKey2Param>
         Item(TBuilder& builder, TKey1Param kp1, TKey2Param kp2) :
             ItemBase(builder, kp1, kp2),
             m_item1(builder.getUnsortedArray1(), *this),
@@ -131,7 +121,7 @@ public:
         typedef Builder TBuilder;
 
     public:
-        template <typename TKey1Param, typename TKey2Param>
+        template<typename TKey1Param, typename TKey2Param>
         LeftKeyItem(TBuilder& builder, TKey1Param kp1, TKey2Param kp2) :
             ItemBase(builder, kp1, kp2),
             m_item(builder.getUnsortedArray1(), *this)
@@ -158,7 +148,7 @@ public:
         typedef Builder TBuilder;
 
     public:
-        template <typename TKey1Param, typename TKey2Param>
+        template<typename TKey1Param, typename TKey2Param>
         RightKeyItem(TBuilder& builder, TKey1Param kp1, TKey2Param kp2) :
             ItemBase(builder, kp1, kp2),
             m_item(builder.getUnsortedArray2(), *this)
@@ -180,24 +170,16 @@ private:
     class GetKey1
     {
     public:
-        static const TKey1& key(const TData& item)
-        {
-            return item.key1();
-        }
+        static const TKey1& key(const TData& item) { return item.key1(); }
     };
     class GetKey2
     {
     public:
-        static const TKey2& key(const TData& item)
-        {
-            return item.key2();
-        }
+        static const TKey2& key(const TData& item) { return item.key2(); }
     };
-    
+
 public:
-    BiMap(TBuilder& builder)
-    : m_tree1(),
-    m_tree2()
+    BiMap(TBuilder& builder) : m_tree1(), m_tree2()
     {
         ItemArray& array1 = builder.getUnsortedArray1();
         Tree1Util::sortInPlace(array1);
@@ -207,26 +189,24 @@ public:
         m_tree2.constructFrom(array2);
     }
     ~BiMap() = default;
-    
+
 private:
     BiMap(const BiMap&) = delete;
     BiMap& operator=(const BiMap&) = delete;
-    
+
 public:
-    const TData * findKey1(const TKey1& key) const
+    const TData* findKey1(const TKey1& key) const
     {
-        const TStructItem * item =
-            static_cast<const TStructItem *>(Tree1Util::findInTree(m_tree1, key));
+        const TStructItem* item = static_cast<const TStructItem*>(Tree1Util::findInTree(m_tree1, key));
         return item ? &(item->data()) : nullptr;
     }
-    
-    const TData * findKey2(const TKey2& key) const
+
+    const TData* findKey2(const TKey2& key) const
     {
-        const TStructItem * item =
-            static_cast<const TStructItem *>(Tree2Util::findInTree(m_tree2, key));
+        const TStructItem* item = static_cast<const TStructItem*>(Tree2Util::findInTree(m_tree2, key));
         return item ? &(item->data()) : nullptr;
     }
-    
+
 public:
     TSequence1 sequence1() const
     {
@@ -240,12 +220,12 @@ public:
         seq.makeSequence(m_tree2);
         return seq;
     }
-    
+
 private:
     ItemTree m_tree1;
     ItemTree m_tree2;
 };
 
-}
+} // namespace static_map
 
 #endif /* bimap_hpp */

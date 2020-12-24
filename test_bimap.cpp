@@ -13,7 +13,7 @@
 #include "bimap.hpp"
 #include "enummap.hpp"
 
-typedef static_map::BiMap<int, int, std::less<int>, std::less<int> > BIMap;
+typedef static_map::BiMap<int, int, std::less<int>, std::less<int>> BIMap;
 typedef BIMap::Item BI;
 
 static BIMap::TBuilder bb;
@@ -27,7 +27,7 @@ static BIMap bm(bb);
 static void bi1FindIt(int i)
 {
     std::cout << "find " << i;
-    const BI * p = bm.findKey1(i);
+    const BI* p = bm.findKey1(i);
     std::cout << (p ? " found" : " not found");
     if (p)
     {
@@ -70,7 +70,7 @@ static void bi1TraverseRev(TSequence1& seq)
 static void bi2FindIt(int i)
 {
     std::cout << "find " << i;
-    const BI * p = bm.findKey2(i);
+    const BI* p = bm.findKey2(i);
     std::cout << (p ? " found" : " not found");
     if (p)
     {
@@ -135,77 +135,79 @@ void testBiMap1()
     std::cout << "Stop Test" << std::endl;
 }
 
-//in header:
+// in header:
 namespace color
 {
-    typedef enum {
-        RED = -3,
-        GREEN = 1,
-        BLUE = 14
-    } Color;
+typedef enum
+{
+    RED = -3,
+    GREEN = 1,
+    BLUE = 14
+} Color;
 
-    static const char * colorToString(Color c);
-    static Color stringToColor(const char * c);
-}
+static const char* colorToString(Color c);
+static Color stringToColor(const char* c);
+} // namespace color
 
-//in source:
+// in source:
 namespace color
 {
 using static_map::Enum;
 
-    static Enum<Color>::Builder b;
-    static Enum<Color>::Item e1(b, Color::RED, "RED");
-    static Enum<Color>::Item e2(b, Color::BLUE, "bleu");
-    static Enum<Color>::Item e3(b, Color::GREEN, "Green");
+static Enum<Color>::Builder b;
+static Enum<Color>::Item e1(b, Color::RED, "RED");
+static Enum<Color>::Item e2(b, Color::BLUE, "bleu");
+static Enum<Color>::Item e3(b, Color::GREEN, "Green");
 
-    static Enum<Color>::Map em(b);
+static Enum<Color>::Map em(b);
 
-    static const char * colorToString(Color c)
-    {
-        auto p = Enum<Color>::enumToString(em, c);
-        return p.second;
-    }
-    static Color stringToColor(const char * c)
-    {
-        auto p = Enum<Color>::stringToEnum(em, c);
-        return p.second;
-    }
+static const char* colorToString(Color c)
+{
+    auto p = Enum<Color>::enumToString(em, c);
+    return p.second;
 }
+static Color stringToColor(const char* c)
+{
+    auto p = Enum<Color>::stringToEnum(em, c);
+    return p.second;
+}
+} // namespace color
 
-//in header:
+// in header:
 namespace shape
 {
-    typedef enum {
-        CIRCLE = 1,
-        SQUARE = 2
-    } Shape;
+typedef enum
+{
+    CIRCLE = 1,
+    SQUARE = 2
+} Shape;
 
-    static const char * shapeToString(Shape c);
-    static Shape stringToShape(const char * c);
-}
+static const char* shapeToString(Shape c);
+static Shape stringToShape(const char* c);
+} // namespace shape
 
-//in source:
+// in source:
 namespace shape
 {
 using static_map::Enum;
 
-    static Enum<Shape>::Builder b;
-    static Enum<Shape>::Item e1(b, Shape::SQUARE, "square");
-    static Enum<Shape>::Item e2(b, Shape::CIRCLE, "circle");
+static Enum<Shape>::Builder b;
+static Enum<Shape>::Item e1(b, Shape::SQUARE, "square");
+static Enum<Shape>::Item e2(b, Shape::CIRCLE, "circle");
 
-    static Enum<Shape>::Map em(b);
+static Enum<Shape>::Map em(b);
 
-    static const char * shapeToString(Shape c)
-    {
-        auto p = Enum<Shape>::enumToString(em, c);
-        return p.second;
-    }
-    static Shape stringToShape(const char * c)
-    {
-        auto p = Enum<Shape>::stringToEnum(em, c);
-        return p.second;
-    }
+static const char* shapeToString(Shape c)
+{
+    auto p = Enum<Shape>::enumToString(em, c);
+    return p.second;
 }
+static Shape stringToShape(const char* c)
+{
+    auto p = Enum<Shape>::stringToEnum(em, c);
+    return p.second;
+}
+} // namespace shape
 
 void testBiMap2()
 {
@@ -213,7 +215,7 @@ void testBiMap2()
         using namespace color;
         Color c1 = Color::RED;
         std::cout << colorToString(c1) << " should be RED" << std::endl;
-        
+
         Color c2 = stringToColor("RED");
         std::cout << "are equal:" << (c1 == c2) << std::endl;
     }
@@ -221,7 +223,7 @@ void testBiMap2()
         using namespace shape;
         Shape c1 = Shape::CIRCLE;
         std::cout << shapeToString(c1) << " should be CIRCLE" << std::endl;
-        
+
         Shape c2 = stringToShape("circle");
         std::cout << "are equal:" << (c1 == c2) << std::endl;
     }

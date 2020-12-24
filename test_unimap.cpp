@@ -36,7 +36,7 @@ static void ii1FindIt(int i)
     std::cout << std::endl;
 }
 
-template <typename TIterParam>
+template<typename TIterParam>
 static void ii1Traverse(TIterParam itBegin, TIterParam itEnd)
 {
     std::cout << "->" << std::endl;

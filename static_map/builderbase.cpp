@@ -8,5 +8,6 @@
 
 #include "builderbase.hpp"
 
-namespace static_map {
+namespace static_map
+{
 }
