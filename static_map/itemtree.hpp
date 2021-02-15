@@ -174,7 +174,7 @@ class ItemTree
 {
 public:
     // construct the tree as empty
-    ItemTree() : m_top(nullptr), m_first(nullptr), m_last(nullptr) {}
+    ItemTree() : m_top(nullptr), m_first(nullptr), m_last(nullptr), m_default(nullptr) {}
     // destroy the object
     ~ItemTree() = default;
 
@@ -215,6 +215,9 @@ public:
     const StructItem* getLast() const { return m_last; }
 
 public:
+    const StructItem* getDefault() const { return m_default; }
+    
+public:
     // gets the middle element in O(1) time
     // returns nullptr if empty
     const StructItem* getTryMiddle() const { return m_top; }
@@ -240,6 +243,7 @@ private:
     const StructItem* m_top;
     const StructItem* m_first;
     const StructItem* m_last;
+    const StructItem* m_default;
 };
 
 //
@@ -354,6 +358,8 @@ public:
         }
         // escaped loop either by running out of nodes (item == null)
         // or via the break when item was found
+        if (!item)
+            item = tree.getDefault();
         return item;
     }
 };

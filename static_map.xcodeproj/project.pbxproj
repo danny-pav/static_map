@@ -94,14 +94,14 @@
 		B3BC113224574EF400E8340E = {
 			isa = PBXGroup;
 			children = (
-				B3F17AB52590D6CF008EB313 /* test_refmap.cpp */,
-				B3F17AB42590D6CF008EB313 /* test_refmap.hpp */,
 				B33D72D4258BDA000046446F /* static_map */,
 				B379CF3B2582C89C0069A3DB /* LICENSE */,
 				B379CF3A2582B11E0069A3DB /* README.md */,
 				B3BC113E24574EF500E8340E /* main.cpp */,
 				B33D72CF258BD9910046446F /* test_bimap.cpp */,
 				B33D72CE258BD9910046446F /* test_bimap.hpp */,
+				B3F17AB52590D6CF008EB313 /* test_refmap.cpp */,
+				B3F17AB42590D6CF008EB313 /* test_refmap.hpp */,
 				B3DA2958259065A1009D7192 /* test_unimap.cpp */,
 				B3DA2957259065A1009D7192 /* test_unimap.hpp */,
 				B3BC113C24574EF500E8340E /* Products */,
