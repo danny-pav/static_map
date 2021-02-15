@@ -185,6 +185,7 @@ void ItemTree::constructFrom(ItemArray& sortedArray)
         m_first = getLeftmostChildOf(m_top);
         m_last = getRightmostChildOf(m_top);
     }
+    m_default = sortedArray.getDefault();
 }
 
 // find the middle of each of two ranges, left to mid and mid to right

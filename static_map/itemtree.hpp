@@ -102,7 +102,7 @@ class ItemArray
 {
 public:
     // construct it as empty
-    ItemArray() : m_first(nullptr), m_last(nullptr) {}
+    ItemArray() : m_first(nullptr), m_last(nullptr), m_default(nullptr) {}
     // destroy it
     ~ItemArray() = default;
 
@@ -147,6 +147,9 @@ public:
     // or after the middle.  will return either first or last if
     // nodes are consecutive.  will return first if first == last
     StructItem* getMiddleOf(StructItem* first, StructItem* last);
+    //
+    const StructItem* getDefault() const { return m_default; }
+    
 
 public:
     // swap the items' position in the list, updating links as necessary
@@ -156,7 +159,7 @@ public:
 
 private:
     // implementation function for swap when the items are consecutive
-    // requires that item1 immediately preced item2
+    // requires that item1 immediately precede item2
     void swapConsecutive(StructItem* item1, StructItem* item2);
 
 private:
@@ -164,6 +167,8 @@ private:
     StructItem* m_first;
     // the last item in the list
     StructItem* m_last;
+    //default item
+    const StructItem* m_default;
 };
 
 //
