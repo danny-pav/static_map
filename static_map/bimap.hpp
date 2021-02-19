@@ -93,11 +93,16 @@ public:
 
     public:
         template<typename TKey1Param, typename TKey2Param>
-        Item(TBuilder& builder, TKey1Param kp1, TKey2Param kp2) :
+        Item(TBuilder& builder, TKey1Param kp1, TKey2Param kp2, bool isDefault = false) :
             ItemBase(builder, kp1, kp2),
             m_item1(builder.getUnsortedArray1(), *this),
             m_item2(builder.getUnsortedArray2(), *this)
         {
+            if (isDefault)
+            {
+                builder.getUnsortedArray1().setDefault(m_item1);
+                builder.getUnsortedArray2().setDefault(m_item2);
+            }
         }
 
     public:

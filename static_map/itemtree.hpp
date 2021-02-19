@@ -115,6 +115,8 @@ public:
     bool isEmpty() const { return !m_first; }
 
 public:
+    // sets the default item
+    void setDefault(const StructItem& item);
     // adds an item at the end in O(1) time
     void appendItem(StructItem& item);
     // removes the item and makes the left and right items

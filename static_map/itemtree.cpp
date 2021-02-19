@@ -23,6 +23,12 @@ StructItem::StructItem(ItemArray& array, const void* data) : m_item(), m_data(da
 //
 //
 
+void ItemArray::setDefault(const StructItem& item)
+{
+    assert(!m_default);
+    m_default = &item;
+}
+
 void ItemArray::appendItem(StructItem& item)
 {
     assert(!item.m_item.m_arrayItem.m_next);
