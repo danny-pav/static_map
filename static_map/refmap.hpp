@@ -64,7 +64,13 @@ public:
         typedef StructItemT<TData> TStructItem;
 
     public:
-        Item(TBuilder& builder, const TData& data) : m_item(builder.getUnsortedArray(), data), m_data(data) {}
+        Item(TBuilder& builder, const TData& data, bool isDefault = false) : m_item(builder.getUnsortedArray(), data), m_data(data)
+        {
+            if (isDefault)
+            {
+                builder.getUnsortedArray().setDefault(m_item);
+            }
+        }
         ~Item() = default;
 
     private:

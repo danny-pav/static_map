@@ -102,7 +102,7 @@ class ItemArray
 {
 public:
     // construct it as empty
-    ItemArray() : m_first(nullptr), m_last(nullptr) {}
+    ItemArray() : m_first(nullptr), m_last(nullptr), m_default(nullptr) {}
     // destroy it
     ~ItemArray() = default;
 
@@ -115,6 +115,8 @@ public:
     bool isEmpty() const { return !m_first; }
 
 public:
+    // sets the default item
+    void setDefault(const StructItem& item);
     // adds an item at the end in O(1) time
     void appendItem(StructItem& item);
     // removes the item and makes the left and right items
@@ -147,6 +149,9 @@ public:
     // or after the middle.  will return either first or last if
     // nodes are consecutive.  will return first if first == last
     StructItem* getMiddleOf(StructItem* first, StructItem* last);
+    //
+    const StructItem* getDefault() const { return m_default; }
+    
 
 public:
     // swap the items' position in the list, updating links as necessary
@@ -156,7 +161,7 @@ public:
 
 private:
     // implementation function for swap when the items are consecutive
-    // requires that item1 immediately preced item2
+    // requires that item1 immediately precede item2
     void swapConsecutive(StructItem* item1, StructItem* item2);
 
 private:
@@ -164,6 +169,8 @@ private:
     StructItem* m_first;
     // the last item in the list
     StructItem* m_last;
+    //default item
+    const StructItem* m_default;
 };
 
 //
@@ -174,7 +181,7 @@ class ItemTree
 {
 public:
     // construct the tree as empty
-    ItemTree() : m_top(nullptr), m_first(nullptr), m_last(nullptr) {}
+    ItemTree() : m_top(nullptr), m_first(nullptr), m_last(nullptr), m_default(nullptr) {}
     // destroy the object
     ~ItemTree() = default;
 
@@ -215,6 +222,9 @@ public:
     const StructItem* getLast() const { return m_last; }
 
 public:
+    const StructItem* getDefault() const { return m_default; }
+    
+public:
     // gets the middle element in O(1) time
     // returns nullptr if empty
     const StructItem* getTryMiddle() const { return m_top; }
@@ -240,6 +250,7 @@ private:
     const StructItem* m_top;
     const StructItem* m_first;
     const StructItem* m_last;
+    const StructItem* m_default;
 };
 
 //
@@ -354,6 +365,8 @@ public:
         }
         // escaped loop either by running out of nodes (item == null)
         // or via the break when item was found
+        if (!item)
+            item = tree.getDefault();
         return item;
     }
 };

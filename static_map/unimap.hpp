@@ -144,11 +144,15 @@ public:
 
     public:
         template<typename TKeyParam, typename TValParam>
-        Item(TBuilder& builder, TKeyParam kp, TValParam vp) :
+        Item(TBuilder& builder, TKeyParam kp, TValParam vp, bool isDefault = false) :
             m_item(builder.getUnsortedArray(), *this),
             m_key(kp),
             m_val(vp)
         {
+            if (isDefault)
+            {
+                builder.getUnsortedArray().setDefault(m_item);
+            }
         }
         ~Item() = default;
 

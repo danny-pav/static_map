@@ -23,6 +23,12 @@ StructItem::StructItem(ItemArray& array, const void* data) : m_item(), m_data(da
 //
 //
 
+void ItemArray::setDefault(const StructItem& item)
+{
+    assert(!m_default);
+    m_default = &item;
+}
+
 void ItemArray::appendItem(StructItem& item)
 {
     assert(!item.m_item.m_arrayItem.m_next);
@@ -185,6 +191,7 @@ void ItemTree::constructFrom(ItemArray& sortedArray)
         m_first = getLeftmostChildOf(m_top);
         m_last = getRightmostChildOf(m_top);
     }
+    m_default = sortedArray.getDefault();
 }
 
 // find the middle of each of two ranges, left to mid and mid to right

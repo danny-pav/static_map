@@ -19,7 +19,7 @@ typedef IIMap::Builder IIBuilder;
 static IIBuilder ib;
 static II i1(ib, 1, 5);
 static II i2(ib, 2, 4);
-static II i3(ib, 0, 0);
+static II i3(ib, 0, 0, true);
 static II i4(ib, 4, 2);
 
 static IIMap im(ib);
@@ -77,6 +77,7 @@ void testUniMap()
     ii1FindIt(1);
     ii1FindIt(3);
     ii1FindIt(4);
+    ii1FindIt(6);
 
     std::cout << "Stop Test" << std::endl;
 }
